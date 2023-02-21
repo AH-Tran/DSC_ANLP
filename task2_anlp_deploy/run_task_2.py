@@ -26,6 +26,7 @@ def parse_args():
     parser = argparse.ArgumentParser(
         description='This is a baseline for task 2 that spoils each clickbait post with the title of the linked page.')
 
+    # Adding commandline input parameters for the input and output path and for the model to use
     parser.add_argument('--input', type=str, help='The input data (expected in jsonl format).', required=True)
     parser.add_argument('--output', type=str, help='The spoiled posts in jsonl format.', required=False)
     parser.add_argument('--apply_rule_base', type=str, help='The spoiled posts in jsonl format.', required=False)
@@ -34,33 +35,43 @@ def parse_args():
 
 
 def detect_multi_spoiler(question, paragraphs):
+
+    # Create scoring variable, to decide if spoiler is a multi spoiler
     points = 0
 
+    # Recreate the full context from the single paragraphs
     passage = ""
     for i in paragraphs:
         passage += i
 
+    # Search for patterns in the question and the context to identify multi spoilers
+
+    # Look out for enumerations in the context ( like 1. ... 2. ... )
     if re.match(".*\d+\s*[\.\)].+\d+?\s*[\.\)].+?\d+\s*[\.\)]", passage, re.MULTILINE | re.IGNORECASE):
+        # If pattern matches apply +3 to the score and excute additional constrains
         points += 3
 
+        # Condition if question starts with a number, highly likely to be a multi spoiler
         if re.match("^\d", question, re.MULTILINE | re.IGNORECASE):
             points += 3
 
+        # Condition if question starts with "These are"..., highly likely to be a multi spoiler
         if re.match("These are", question, re.MULTILINE | re.IGNORECASE):
             points += 3
 
+        # Condition if question contains a punctuation mark followed by a number
         if re.match("[\.\?\!\s\d\s]", question, re.MULTILINE | re.IGNORECASE):
             points += 3
 
+        # Condition if question contains a "these" followed by a number
         if re.match(".*these \d", question, re.MULTILINE | re.IGNORECASE):
             points += 3
 
+        # Condition if question contains a "need to know"
         if re.match("need to know", question, re.MULTILINE | re.IGNORECASE):
             points += 3
 
-        if re.match("need to know", question, re.MULTILINE | re.IGNORECASE):
-            points += 3
-
+    # If score is equal or higher than six, question is considered and treated as multi spoiler
     if points >= 6:
         return True
 
@@ -72,37 +83,49 @@ import re
 
 
 def extract_enumeration_spoiler(paragraphs):
-    passage = ""
-    for i in paragraphs:
-        passage += i
 
-    enum2 = []
+    # Initializing a list for the collected enumerations in the context
+    enum = []
+
+    # Iterate through the single paragraphs and extract enumerations if found ( like 1. ... or 1) ... )
     for i in paragraphs:
         m = re.search("[1-9]\d{0,1}\s*[\.\)]\s.+", i, re.MULTILINE)
+        # Add found enumerations to list
         if m:
-            enum2.append(m.group(0))
-    if len(enum2) >= 5:
-        if enum2[0].startswith("1"):
-            enum2 = enum2[:5]
+            enum.append(m.group(0))
+
+    # Condition to just cover the first 5 enumerations of a context, because the dataset always just cover the top 5
+    if len(enum) >= 5:
+        # Condition to ensure that Top 5 is considered, even when the listing in the context is reversed (descending)
+        if enum[0].startswith("1"):
+            enum = enum[:5]
         else:
-            enum2 = enum2[-5:]
+            enum = enum[-5:]
     else:
-        enum2 = enum2
+        # Condition to ensure that Top 5 is considered, even when the listing in the context is reversed (descending)
 
-    # if spoiler == enum2:
-    #    print("success")
+        if enum[0].startswith("1"):
+            enum = enum
+        else:
+            enum = enum.reverse()
 
-    # print("\n-------------\n")
-    return enum2
+    return enum
 
-
+# Function predict_2 is an adaptive approach featuring the transformer model and a rule based regex approach
 def predict_2(inputs, model):
+
+    # Iterate through the test dataset columns
     for i in inputs:
+        # Check if spoiler is a multi part spoiler
         if detect_multi_spoiler(i["postText"][0], i["targetParagraphs"]):
+            # Extract the enumerations, if spoiler is detected as multi part spoiler
             spoiler = extract_enumeration_spoiler(i["targetParagraphs"])
+            # If the result list of enumerations is not empty, return the enumerations a suggested spoilers
             if len(spoiler) > 0:
                 yield {'uuid': i['uuid'], 'spoiler': spoiler}
+            # If the result list of enumerations is empty, apply the transformer model and return the suggested answer of the model
             else:
+                # Recreate the full context from the single paragraphs
                 text = ""
                 for j in i["targetParagraphs"]:
                     text += j + " "
@@ -114,8 +137,11 @@ def predict_2(inputs, model):
                 # print(i["postText"][0])
                 # print(text)
                 result = model.inference_from_dicts(dicts=QA_input, return_json=False)
+
+                # Extract the answer with the highest confidence score
                 confidence = 0
                 answer = ""
+
                 for k in result[0].prediction:
                     # print(k.answer, k.confidence)
                     if confidence < k.confidence:
@@ -124,7 +150,9 @@ def predict_2(inputs, model):
 
                 yield {'uuid': i['uuid'], 'spoiler': answer}
 
+        # If spoiler is not considered a multi part spoiler, apply transformer model approach
         elif detect_multi_spoiler(i["postText"][0], i["targetParagraphs"]) == False:
+            # Recreate the full context from the single paragraphs
             text = ""
             for j in i["targetParagraphs"]:
                 text += j + " "
@@ -133,26 +161,27 @@ def predict_2(inputs, model):
                     "questions": i["postText"],
                     "text": text
                 }]
-            # print(i["postText"][0])
-            # print(text)
+
             result = model.inference_from_dicts(dicts=QA_input, return_json=False)
+
+            # Extract the answer with the highest confidence score
+
             confidence = 0
             answer = ""
             for k in result[0].prediction:
-                # print(k.answer, k.confidence)
                 if confidence < k.confidence:
                     confidence = k.confidence
                     answer = k.answer
 
             yield {'uuid': i['uuid'], 'spoiler': answer}
 
+# Function predict_1 only consideres the transformer model in the approach
 def predict_1(inputs, model):
-    for i in inputs:
-        #if detect_multi_spoiler(i["postText"][0], i["targetParagraphs"]):
-        #    spoiler = extract_enumeration_spoiler(i["targetParagraphs"])
-        #    yield {'uuid': i['uuid'], 'spoiler': spoiler}
 
-        #elif detect_multi_spoiler(i["postText"][0], i["targetParagraphs"]) == False:
+    # Iterate through the test dataset columns
+
+    for i in inputs:
+        # Recreate the full context from the single paragraphs
         text = ""
         for j in i["targetParagraphs"]:
             text += j + " "
@@ -161,45 +190,40 @@ def predict_1(inputs, model):
                 "questions": i["postText"],
                 "text": text
             }]
-        # print(i["postText"][0])
-        # print(text)
+
         result = model.inference_from_dicts(dicts=QA_input, return_json=False)
+
+        # Extract the answer with the highest confidence score
+
         confidence = 0
         answer = ""
         for k in result[0].prediction:
-            # print(k.answer, k.confidence)
             if confidence < k.confidence:
                 confidence = k.confidence
                 answer = k.answer
 
         yield {'uuid': i['uuid'], 'spoiler': answer}
 
-def run_baseline(input_file, output_file, apply_rule_base , model):
+def run_approach(input_file, output_file, apply_rule_base , model):
     print("Generating Spoilers...")
+    # Open the test dataset (read mode) and the output file (write mode) with the suggested spoilers
     with open(input_file, 'r', encoding="utf-8") as inp, open(output_file, 'w') as out:
         inp = [json.loads(i) for i in inp]
-        #inp = inp[:2]
+        # Condition if approach 1 or 2 should be executed
         if apply_rule_base == "v1":
             for output in predict_1(inp, model):
-                print(output)
                 out.write(json.dumps(output) + '\n')
         elif apply_rule_base == "v2":
             for output in predict_2(inp, model):
-                print(output)
                 out.write(json.dumps(output) + '\n')
 
 if __name__ == '__main__':
+    # Load pretrained transformer model for extractive question answering
     inferencer = QAInferencer.load("/saved_models/qa-model-task2", batch_size=40, gpu=True,
                                    task_type="question_answering")
-
+    # Access the commandline parameters
     args = parse_args()
 
-    run_baseline(args.input, args.output, args.apply_rule_base, inferencer)
+    # Execute one of the two approaches, depending on args.apply_rule_base parameter
+    run_approach(args.input, args.output, args.apply_rule_base, inferencer)
 
-    with open(args.output, 'r', encoding="utf-8") as result:
-         result = [json.loads(i) for i in result]
-    print(len(result))
-    """import sys
-    print('\n'.join(sys.path))"""
-
-    #run_baseline("../data/validation.jsonl", "../data/output.jsonl", "v2", inferencer)
