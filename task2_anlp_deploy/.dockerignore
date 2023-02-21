@@ -1,0 +1,2 @@
+# Ignore a file or directory in the context root named "modules"
+.venv_task2

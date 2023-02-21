@@ -103,6 +103,7 @@ celerybeat.pid
 
 # Environments
 .env
+.env_anlp
 .venv
 env/
 venv/
@@ -127,3 +128,24 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+task1_anlp_deploy/saved_models/roberta_onnx/config.json
+task1_anlp_deploy/saved_models/roberta_onnx/merges.txt
+task1_anlp_deploy/saved_models/roberta_onnx/model_args.json
+task1_anlp_deploy/saved_models/roberta_onnx/onnx_model.onnx
+task1_anlp_deploy/saved_models/roberta_onnx/special_tokens_map.json
+task1_anlp_deploy/saved_models/roberta_onnx/tokenizer.json
+task1_anlp_deploy/saved_models/roberta_onnx/tokenizer_config.json
+task1_anlp_deploy/saved_models/roberta_onnx/vocab.json
+task2_anlp_deploy/saved_models/qa-model-task2/vocab.json
+task2_anlp_deploy/saved_models/qa-model-task2/tokenizer_config.json
+task2_anlp_deploy/saved_models/qa-model-task2/special_tokens_map.json
+task2_anlp_deploy/saved_models/qa-model-task2/processor_config.json
+task2_anlp_deploy/saved_models/qa-model-task2/prediction_head_0_config.json
+task2_anlp_deploy/saved_models/qa-model-task2/prediction_head_0.bin
+task2_anlp_deploy/saved_models/qa-model-task2/merges.txt
+task2_anlp_deploy/saved_models/qa-model-task2/language_model_config.json
+task2_anlp_deploy/saved_models/qa-model-task2/language_model.bin
+task1_anlp_deploy/run_task_1_rnd.py
+task1_anlp_deploy/run_task_1_nner.py
+task1_anlp_deploy/run_task_1_local.py
+task1_anlp_deploy/run_task_1_alt.py

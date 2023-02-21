@@ -1,0 +1,7 @@
+# Ignore a file or directory in the context root named "modules"
+.venv_task
+out.jsonl
+Untitled-1.ipynb
+run_task_1_alt.py
+run_task_1_local.py
+saved_models\task1_roberta
