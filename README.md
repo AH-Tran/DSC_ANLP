@@ -1,8 +1,6 @@
 # [ANLP] Team Billie-Newman at SemEval-2023 Task 5: Clickbait Spoiling
 This is the repository for the course 'Advanced Natural Language Processing' for the study 'Digital Sciences' at the University of Applied Sciences Cologne.  
 It contains the project code for the participation in the [Clickbait Challenge](https://pan.webis.de/semeval23/pan23-web/clickbait-challenge.html) proposed at SemEval-2023
-  
-```xx```
 
 * Task 1 Spoiler Classification: RoBERTa model with NER and custom components
 * Task 2 Spoiler Generation: RoBERTa SQuAD2.0 model with rule-based approach
