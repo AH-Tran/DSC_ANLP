@@ -2,18 +2,17 @@
 This is the repository for the course 'Advanced Natural Language Processing' for the study 'Digital Sciences' at the University of Applied Sciences Cologne.
 It contains the project code for the participation in the Clickbait Challenge proposed at SemEval-2023
   
-``````
-* Four Graph Implementations: Co-citation Graph, Citation Graph, Lotka-Inspired Graph, Journal Graph
-* Metrics: **Degree Centrality**, **Closeness**, **Betweenness**, **Distance to most popular node**
-* Comparing BM25 Baseline vs. Re-ranking with Boosting Factor
-* Dataset: TREC-COVID / Cord19 dataset
+```xx```
+* Task 1 Spoiler Classification: RoBERTa model with NER and custom components
+* Task 2 Spoiler Generation: RoBERTa SQuAD2.0 model with rule-based approach
+* Dataset: Annotated WEBIS CORPUS 2022
 
 
 
 #### Structure of this repository
-* `data\`: Metadata used for the project
 * `doc\`: Documentation and presentation of the project
-* `scripts\`: Jupyter notebooks used for the project
+* `task1_anlp_deploy\`: Code and Docker File of Task 1
+* `task2_anlp_deploy\`: Code and Docker File of Task 2
 
 #### Notebook description
 | filename                    | description                                                                                                                                                         |
