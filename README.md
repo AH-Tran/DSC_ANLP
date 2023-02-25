@@ -15,11 +15,13 @@ It contains the project code for the participation in the [Clickbait Challenge](
 * `task1_anlp_deploy\`: Code and Docker File of Task 1
 * `task2_anlp_deploy\`: Code and Docker File of Task 2
 
-#### Notebook description
+#### File description
 | filename                    | description                                                                                                                                                         |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Experiments.ipynb` | Creating, experimenting & evaluating retrieval perfomance with the graphs |
-| `Scrape_metadata.ipynb` | Scraping relevant metadata using SemanticScholarAPI|
+| `Reformat_to_SQuAD.ipynb` | Code for reformatting the spoiler questions into the SQuaD2.0 format |
+| `Training_model.ipynb` | Code for training the RoBERTa-SQuAD2.0 model for the downstream task for spoiler generation|
+| `run_task_2.py` | File for running the spoiler generation.  Arguments: --apply_rule_base v1 / --apply_rule_base v2|
+
 
 
 ## Sources 
