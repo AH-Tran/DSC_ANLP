@@ -1,5 +1,5 @@
 # [ANLP] Team Billie-Newman at SemEval-2023 Task 5: Clickbait Spoiling
-This is the repository for the course 'Advanced Natural Language Processing' for the study 'Digital Sciences' at the University of Applied Sciences Cologne.
+This is the repository for the course 'Advanced Natural Language Processing' for the study 'Digital Sciences' at the University of Applied Sciences Cologne.  
 It contains the project code for the participation in the Clickbait Challenge proposed at SemEval-2023
   
 ```xx```
