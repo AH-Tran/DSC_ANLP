@@ -1,11 +1,12 @@
 # [ANLP] Team Billie-Newman at SemEval-2023 Task 5: Clickbait Spoiling
 This is the repository for the course 'Advanced Natural Language Processing' for the study 'Digital Sciences' at the University of Applied Sciences Cologne.  
-It contains the project code for the participation in the Clickbait Challenge proposed at SemEval-2023
+It contains the project code for the participation in the [Clickbait Challenge](https://pan.webis.de/semeval23/pan23-web/clickbait-challenge.html) proposed at SemEval-2023
   
 ```xx```
+
 * Task 1 Spoiler Classification: RoBERTa model with NER and custom components
 * Task 2 Spoiler Generation: RoBERTa SQuAD2.0 model with rule-based approach
-* Dataset: Annotated WEBIS CORPUS 2022
+* Dataset: [Webis Clickbait Spoiling Corpus 2022](https://zenodo.org/record/6362726#.Y_np8B-ZNHV)
 
 
 
@@ -22,6 +23,6 @@ It contains the project code for the participation in the Clickbait Challenge pr
 
 
 ## Sources 
-[cord19](https://ir-datasets.com/cord19.html)  
-[Semantic Scholar](https://www.semanticscholar.org/)  
+[SemEval-2023 Task 5](https://pan.webis.de/semeval23/pan23-web/clickbait-challenge.html)  
+[Webis Clickbait Spoiling Corpus 2022](https://zenodo.org/record/6362726#.Y_np8B-ZNHV) 
 [pyterrier](https://github.com/terrier-org/pyterrier)  
