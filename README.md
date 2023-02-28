@@ -23,8 +23,6 @@ It contains the project code for the participation in the [Clickbait Challenge](
 | `Training_model.ipynb` | Code for training the RoBERTa-SQuAD2.0 model for the downstream task for spoiler generation|
 | `run_task_2.py` | File for running the spoiler generation.  Arguments: --apply_rule_base v1 / --apply_rule_base v2|
 
-#### Submission File
-
 
 ## Sources 
 [SemEval-2023 Task 5](https://pan.webis.de/semeval23/pan23-web/clickbait-challenge.html)  
