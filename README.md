@@ -9,7 +9,7 @@ It contains the project code for the participation in the [Clickbait Challenge](
 
 
 #### Structure of this repository
-* `doc\`: Documentation and presentation of the project
+* `doc\`: Contains the project presentation and project report
 * `task1_anlp_deploy\`: Code and Docker File of Task 1
 * `task2_anlp_deploy\`: Code and Docker File of Task 2
 
@@ -23,6 +23,7 @@ It contains the project code for the participation in the [Clickbait Challenge](
 | `Training_model.ipynb` | Code for training the RoBERTa-SQuAD2.0 model for the downstream task for spoiler generation|
 | `run_task_2.py` | File for running the spoiler generation.  Arguments: --apply_rule_base v1 / --apply_rule_base v2|
 
+#### Submission File
 
 
 ## Sources 
