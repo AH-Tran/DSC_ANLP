@@ -17,7 +17,7 @@ It contains the project code for the participation in the [Clickbait Challenge](
 | filename                    | description                                                                                                                                                         |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `EDA.ipynb` | Code for pre-processing the WEBIS Clickbait Spoiling Corpus 2022 |
-| `simple_transformer.ipynb` | Code for training the RoBERTa model for multi-class classification |
+| `simple_transformer_task1.ipynb` | Code for training the RoBERTa model for multi-class classification |
 | `run_task_1.py` | File for running the spoiler classifcation|
 | `Reformat_to_SQuAD.ipynb` | Code for reformatting the spoiler questions into the SQuaD2.0 format |
 | `Training_model.ipynb` | Code for training the RoBERTa-SQuAD2.0 model for the downstream task for spoiler generation|
