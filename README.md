@@ -11,17 +11,17 @@ The docker images can be pulled from these dockerhub repositories:
 [[Task 1 Dockerhub Repo]](https://hub.docker.com/repository/docker/atran37/clickbait_task1_clf/general) | [[Task 2 Dockerhub Repo]](https://hub.docker.com/repository/docker/atran37/clickbait_task2_qa/general) 
 #### Task 1 Command
 ```
-docker run --rm -d >>>CONTAINER_NAME<<< --input >>INPUT_DATA<<< --output output.jsonl --apply_ner=yes
+docker run --rm -d >>>CONTAINER_NAME<<< --input >>INPUT_DATA<<<.jsonl --output output.jsonl --apply_ner=yes
 ```
 
 #### Task 2 Command
 Without rule-based approach:
 ```
-docker run --rm -d >>>CONTAINER_NAME<<< --input data/>>INPUT_DATA<<< --output output.jsonl --apply_rule_base=v1
+docker run --rm -d >>>CONTAINER_NAME<<< --input >>INPUT_DATA<<<.jsonl --output output.jsonl --apply_rule_base=v1
 ```
 With rule-based approach:
 ```
-docker run --rm -d >>>CONTAINER_NAME<<< --input data/>>INPUT_DATA<<< --output output.jsonl --apply_rule_base=v2
+docker run --rm -d >>>CONTAINER_NAME<<< --input >>INPUT_DATA<<<.jsonl --output output.jsonl --apply_rule_base=v2
 ```
 
 ## Structure of this repository
