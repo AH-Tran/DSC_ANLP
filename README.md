@@ -7,19 +7,29 @@ It contains the project code for the participation in the [Clickbait Challenge](
 * Dataset: [Webis Clickbait Spoiling Corpus 2022](https://zenodo.org/record/6362726#.Y_np8B-ZNHV)
 
 ## Docker Images
-The docker images can be pulled from this dockerhub repository:
-| Task                    | description                                                                                                                                                         |
-| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Task 1` | [Dockerhub Repo](https://hub.docker.com/repository/docker/atran37/clickbait_task1_clf/general) |
-| `Task 2` | [Dockerhub Repo](https://hub.docker.com/repository/docker/atran37/clickbait_task2_qa/general) |
+The docker images can be pulled from these dockerhub repositories:  
+[[Task 1 Dockerhub Repo]](https://hub.docker.com/repository/docker/atran37/clickbait_task1_clf/general) | [[Task 2 Dockerhub Repo]](https://hub.docker.com/repository/docker/atran37/clickbait_task2_qa/general) 
+#### Task 1 Command
+```
+docker run --rm -d >>>CONTAINER_NAME<<< --input >>INPUT_DATA<<< --output output.jsonl --apply_ner=yes
+```
 
+#### Task 2 Command
+Without rule-based approach:
+```
+docker run --rm -d >>>CONTAINER_NAME<<< --input data/>>INPUT_DATA<<< --output output.jsonl --apply_rule_base=v1
+```
+With rule-based approach:
+```
+docker run --rm -d >>>CONTAINER_NAME<<< --input data/>>INPUT_DATA<<< --output output.jsonl --apply_rule_base=v2
+```
 
-#### Structure of this repository
+## Structure of this repository
 * `doc\`: Contains the project presentation and project report
 * `task1_anlp_deploy\`: Code and Docker File of Task 1
 * `task2_anlp_deploy\`: Code and Docker File of Task 2
 
-#### File description
+## File description
 | filename                    | description                                                                                                                                                         |
 | --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `EDA.ipynb` | Code for pre-processing the WEBIS Clickbait Spoiling Corpus 2022 |
