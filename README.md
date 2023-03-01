@@ -6,6 +6,12 @@ It contains the project code for the participation in the [Clickbait Challenge](
 * Task 2 Spoiler Generation: RoBERTa SQuAD2.0 model with rule-based approach
 * Dataset: [Webis Clickbait Spoiling Corpus 2022](https://zenodo.org/record/6362726#.Y_np8B-ZNHV)
 
+## Docker Images
+The docker images can be pulled from this dockerhub repository:
+| Task                    | description                                                                                                                                                         |
+| --------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `Task 1` | [Dockerhub Repo](https://hub.docker.com/repository/docker/atran37/clickbait_task1_clf/general) |
+| `Task 2` | [Dockerhub Repo](https://hub.docker.com/repository/docker/atran37/clickbait_task2_qa/general) |
 
 
 #### Structure of this repository
