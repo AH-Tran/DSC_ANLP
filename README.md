@@ -41,7 +41,8 @@ docker run --rm -d >>>CONTAINER_NAME<<< --input >>INPUT_DATA<<<.jsonl --output o
 ```
 ## Language Models
 Due to their size, the language models can be downloaded separately from these sciebo links:   
-[[Task 1 Model]](https://th-koeln.sciebo.de/s/TowBZJUx6TvWcvx) | [[Task 2 Model]](https://th-koeln.sciebo.de/s/1RWTwNwJvUBm08d)   
+[[Task 1 Model]](https://th-koeln.sciebo.de/s/TowBZJUx6TvWcvx) | [[Task 2 Model]](https://th-koeln.sciebo.de/s/1RWTwNwJvUBm08d)  
+  
 Rename the respective root folder to `saved_model` and put it in either `t1_task_deploy` or `t2_task_deploy` for usage
 - - -
 #### Sources 
