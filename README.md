@@ -48,4 +48,3 @@ Rename the respective root folder to `saved_models` and put it in either `task1_
 #### Sources 
 [SemEval-2023 Task 5](https://pan.webis.de/semeval23/pan23-web/clickbait-challenge.html)  
 [Webis Clickbait Spoiling Corpus 2022](https://zenodo.org/record/6362726#.Y_np8B-ZNHV) 
-[pyterrier](https://github.com/terrier-org/pyterrier)  
